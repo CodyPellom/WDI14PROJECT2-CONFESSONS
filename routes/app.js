@@ -10,24 +10,34 @@ router.get('/confessions', function (req, res) {
 })
 
 
-
-router.get('/confessions', function (req, res) {
+//Add a new confession to the main DB
+router.post('/confessions', function (req, res) {
 
     res.send({
-        type: 'GET'
+        type: 'POST'
     });
 })
 
-
-router.get('/confessions', function (req, res) {
+//Edit a confession thats already been posted
+router.put('/confessions/:id', function (req, res) {
 
     res.send({
-        type: 'GET'
+        type: 'PUT'
     });
 })
 
+//Delete a Confession from the main DB
+router.delete('/confessions/:id', function (req, res) {
 
-router.get('/confessions', function (req, res) {
-
-    res.send({type: 'GET'});
+    res.send({type: 'DELETE'});
     })
+
+
+
+
+
+
+
+
+
+    module.exports = router;
