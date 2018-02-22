@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon./bin/www"
-  }, 
+  },
   "dependencies": {
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
@@ -13,10 +13,15 @@
     "dotenv": "^5.0.0",
     "express": "~4.15.5",
     "hbs": "~4.0.1",
+    "knex": "^0.14.4",
+    "mongo-to-knex": "^0.5.0",
     "mongoose": "^5.0.6",
     "morgan": "~1.9.0",
-    "nodemon": "^1.15.1",
+    "pg": "^7.4.1",
     "save": "^2.3.2",
     "serve-favicon": "~2.4.5"
+  },
+  "devDependencies": {
+    "nodemon": "^1.15.1"
   }
 }
