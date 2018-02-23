@@ -33,9 +33,15 @@ app.use(cookieParser());
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, 'public')));
 
+const index = require('./controllers/index')
+const confessionsController = require('./controllers/confessionsController')
+const userController = require('./controllers/userController')
+
+
+
 app.use('/', index);
-app.use('/about' );
-app.use('/users', users);
+app.use('/confessions' confessionsController);
+app.use('/confessions/:confessionId/users', userController);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
