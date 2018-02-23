@@ -17,6 +17,7 @@
     "mongo-to-knex": "^0.5.0",
     "mongoose": "^5.0.6",
     "morgan": "~1.9.0",
+    "node": "^9.5.0",
     "pg": "^7.4.1",
     "save": "^2.3.2",
     "serve-favicon": "~2.4.5"
