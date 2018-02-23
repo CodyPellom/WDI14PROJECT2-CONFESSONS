@@ -1,11 +1,12 @@
 const mongoose = require('mongoose')
+const confessionSchema = require('./confessionSchema')
 const Schema = mongoose.Schema
 
-const sodaSchema = new Schema({
-  name: String,
-  price: Number,
-  packaging: String,
-  quantitySold: Number
+const userSchema = new Schema({
+  name: Number,
+ 
+ 
 })
 
-module.exports = sodaSchema
+module.exports = userSchema
+

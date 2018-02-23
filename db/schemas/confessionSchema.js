@@ -1,13 +1,11 @@
 const mongoose = require('mongoose')
-const confessionSchema = require('./confessionSchema')
 const Schema = mongoose.Schema
 
-const userSchema = new Schema({
+const confessionSchema = new Schema({
   name: Number,
+  confession: String,
   // This sets up a one to many relationship
 })
 
-module.exports = userSchema
+module.exports = confessionSchema
 
-
-Soda = Confession; Company = User;
