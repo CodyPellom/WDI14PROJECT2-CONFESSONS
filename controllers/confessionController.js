@@ -37,12 +37,12 @@ router.get('/new', (req, res) => {
 router.post('/', (req, res) => {
 
   // Get company we need to save soda to
-  User.findById(req.params.UserId).then((user) => {
+  User.findById(req.params.userId).then((user) => {
 
     // THEN once we have the company, take req.body and make a new Soda
     const newConfession = new Confession({
       name: req.body.name,
-      confession: req.body.confession,
+      price: req.body.price
       
     })
 
@@ -70,7 +70,7 @@ router.get('/:id', (req, res) => {
 
     // connect it to a soda/show view
     res.render('confession/show', {
-      userId: req.params.companyId,
+      userId: req.params.userId,
       confession: confession
     })
   })
@@ -99,8 +99,8 @@ router.patch('/:id', (req, res) => {
     // We don't have a nice method like findByIdAndUpdate here
     // so instead we need to manually change the sodas values
     const confession = user.confessions.id(req.params.id)
-    confession.number = req.body.number
-    confession.field = req.body.field
+    confession.name = req.body.name
+    confession.price = req.body.price
  
 
     // Then Save the company

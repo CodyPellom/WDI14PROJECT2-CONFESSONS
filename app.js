@@ -43,7 +43,7 @@ const userController = require('./controllers/userController')
 
 app.use('/', index)
 app.use('/confessions', confessionController)
-app.use('/confessions/:confessionId/users', userController)
+app.use('/confession/:confessionId/user', userController)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
