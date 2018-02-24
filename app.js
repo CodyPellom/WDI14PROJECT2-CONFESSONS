@@ -30,6 +30,23 @@ app.set('view engine', 'hbs')
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 app.use(logger('dev'))
 app.use(bodyParser.json())
+const dbConfig = require('./config/database.config.js');
+
+
+mongoose.Promise = global.Promise;
+
+mongoose.connect(dbConfig.url, {
+   
+});
+
+mongoose.connection.on('error', function() {
+    console.log('Could not connect to the database. Exiting now...');
+    process.exit();
+});
+
+mongoose.connection.once('open', function() {
+    console.log("Successfully connected to the database. Drones are now on their way to assassinate trump and rape his daughter.");
+})
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(methodOverride('_method'))
@@ -45,12 +62,23 @@ app.use('/', index)
 app.use('/confessions', confessionController)
 app.use('/confession/:confessionId/user', userController)
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  const err = new Error('Not Found')
-  err.status = 404
-  next(err)
+app.post('/confessions/new', (req, res, next)=>{
+  res.render("confessions/new")
 })
+
+app.post('/users/confessions', (req, res, next)=>{
+  res.render("users/confessions")
+})
+
+app.get('/users/:confessions', (req, res, next)=>{
+  res.render("users/confessions")
+})
+// catch 404 and forward to error handler
+//app.use(function(req, res, next) {
+  //const err = new Error('Not Found')
+  //err.status = 404
+ // next(err)
+//})
 
 // error handler
 app.use(function(err, req, res, next) {

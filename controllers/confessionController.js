@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
 router.get('/new', (req, res) => {
 
   // We only need to pass the company ID to this new view
-  res.render('confession/new', {
+  res.render('confessions/new', {
     userId: req.params.userId
   })
 })
