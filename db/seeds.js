@@ -26,7 +26,7 @@ const confessionTest2 = new Confession({
     confession: "Once I cheated on my husband with a very large chimpanzee",
 
 })
-Soda = Confession; Company = User;
+
 
 Confession.remove().then(() => {
 
@@ -50,4 +50,4 @@ Confession.remove().then(() => {
 
 
 
-  soda = confession; company = user;
+  

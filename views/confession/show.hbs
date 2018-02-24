@@ -1,0 +1,29 @@
+<h1>{{confession.name}}</h1>
+
+<h3>Edit or Delete your confession here</h3>
+<a href="/users/{{userId}}/confessions/{{confession._id}}/edit">Edit {{confession.name}}</a>
+
+<form method="POST" action="/users/{{userId}}/confessions/{{confession._id}}?_method=DELETE">
+  <button type="submit">Delete your Confession</button>
+</form>
+
+<style>
+h1, h3 {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+
+}
+
+html, body {
+
+    background-color: rgb(227, 227, 158)
+}
+
+
+
+
+
+
+</style>
