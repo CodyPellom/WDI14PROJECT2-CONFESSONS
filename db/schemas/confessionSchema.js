@@ -1,11 +1,11 @@
 const mongoose = require('mongoose')
+const confessionSchema = require('./confessionSchema')
 const Schema = mongoose.Schema
 
-const confessionSchema = new Schema({
+
+var submissionSchema = mongoose.Schema({
   name: Number,
-  confession: String,
-  // This sets up a one to many relationship
-})
-
-module.exports = confessionSchema
-
+  submit: String
+  
+});
+var Submission = mongoose.model("Submission", submissionSchema);

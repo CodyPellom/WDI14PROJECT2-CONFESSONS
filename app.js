@@ -66,47 +66,46 @@ app.use('/confession/:confessionId/user', userController)
 app.post('/confessions/new', (req, res, next)=>{
   res.render("confessions/new")
 })
-
-app.post('/users/confessions', (req, res, next)=>{
-  res.render("users/confessions")
+app.get('/confessions/new', (req, res, next)=>{
+  res.render("confessions/new")
 })
 
-app.get('/users/:confessions', (req, res, next)=>{
-  res.render("users/confessions")
-})
 
-app.get('/confessions/index', (req, res) => {
-  res.render("public/html/index.html")
-})
-
-app.get('/confessionSubmit', (req, res) => {
-  res.render('confessionSubmit');
-})
-
-app.post('/confessionSubmit', (rea, res) => {
-  var confessionSubmitInfo = req.body; //gets the parsed info
-
-  if(!confessionSubmitInfo.title || !confessionSubmitInfo.submissionfield){
-    res.render('show_message', {
-      message: "sorry, you provided the wrong info buddy", type: "error"
-    }); 
-  }else{
-var newConfessionSubmitInfo = new confessionSubmitInfo({
-      title: confessionSubmitInfo.title,
-      confess_here: confessionSubmitInfo.submissionfield 
-
+app.post('/submission', (req, res) => {
+  res.render('submission');
 });
 
-newConfessionSubmit.save(err, confessionSubmit) =>{
-  if(err)
-  res.render('show_message', {message: "database error boi", type: "error"});
-  else
-  res.render('show_message', {
-    message: "New confession added", type: "success", confessionSubmit:confessionSubmitInfo
-  });
-}
+app.post('/confessions/index', (req, res) =>{
+  res.render('confessions/index');
+})
+app.get('/submission', (req, res) => {
+  res.render('submission');
+})
 
- }
+app.post('/submission', function(req, res){
+  var submissionInfo = req.body; //Get the parsed information
+  
+  if(!submissionInfo.title || !submissionInfo.submit){
+     res.render('show_message', {
+        message: "Sorry, you provided worng info", type: "error"});
+  } else {
+     var newSubmission = new Submission({
+        name: submissionInfo.name,
+        age: submissionInfo.age,
+        nationality: submissionInfo.nationality
+     });
+   
+     newSubmission.save(function(err, Submission){
+        if(err)
+           res.render('show_message', {message: "Database error", type: "error"});
+        else
+           res.render('show_message', {
+              message: "New submission added", type: "success", submission: submissionInfo});
+     });
+  }
+});
+
+ 
 // catch 404 and forward to error handler
 //app.use(function(req, res, next) {
   //const err = new Error('Not Found')
@@ -126,3 +125,11 @@ app.use(function(err, req, res, next) {
 })
 
 module.exports = app
+
+
+app.put('/confessions/index/:id', function(req, res){
+  Submission.findByIdAndUpdate(req.params.id, req.body, function(err, response){
+     if(err) res.json({message: "Error in updating person with id " + req.params.id});
+     res.json(response);
+  });
+});
