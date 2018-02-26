@@ -63,9 +63,9 @@ app.use('/', index)
 app.use('/confessions', confessionController)
 app.use('/confessions/:confessionId/user', userController)
 
-// app.post('/confessions/new', (req, res, next)=>{
-//   res.render("confessions/new")
-// })
+ app.post('/confessions/new', (req, res, next)=>{
+ res.render("confessions/new")
+})
 
 // app.post('/confessions/edit', (req, res, next)=>{
 //   res.render("confessions/edit")

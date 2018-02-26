@@ -1,48 +1,86 @@
-<header>
 
+<div class="center">
 <h1>Submit your Confession</h1>
+<br>
+<br>
+
 <form method="POST" action="/confessions">
-  <div>
+  <div class="info">
     <label for="title">Title of your Confession</label>
     <input type="text" name="name">
   </div>
-  <div>
+  <div class="info">
     <label for="submissionfield">Confess Here </label>
     <input type="text" name="submit">
   </div>
   
 
   
-  <button type="submit">Submit Confession</button>
+  <button id="button-main" type="submit">Submit Confession</button>
 </form>
+</div>
 
 
-</header>
 
 
 
   
  
-</form>
+
 
 
 <style>
-h1, h3 {
+body, html {
+background-image: url(https://fromagination.com/wp-content/uploads/2014/11/cropped-Light-Wood-Background.jpg);
+background-size: 100%;
+
+
+}
+form {
+
+  margin-top: 5%;
+  margin-right: 5%;
+}
+
+h3, p {
+font-family:  Helvetica, Arial, sans-serif;
+color: rgb(147, 0, 0);
+font-size: 35px;
+
+}
+
+.center, #info, label {
+
     display: flex;
     justify-content: center;
-    align-content: center;
+   align-content: center;
+}
 
+h1 {
+font-size: 65px;
+font-family: Helvetica;
+color: crimson
+}
+
+p {
+font-size: 35px;
+font-family: helvetica;
+color: crimson;
+text-decoration: underline;
 
 }
 
-html, body {
-
-    background-color: rgb(227, 227, 158)
+#button-main {
+    font-family: Helvetica;
+    color: crimson;
+    background-color: rgb(128, 78, 37);
+    font-size: 35px;
+    
+    
 }
-
-
-
-
-
-
+.info {
+  font-family: Helvetica;
+  font-size: 25px;
+}
 </style>
+

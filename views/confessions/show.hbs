@@ -3,10 +3,101 @@
 
 <hr>
 
-<a href="/confessions/{{id}}/edit">Edit This Confession</a>
+<a id="edit" href="/confessions/{{id}}/edit">Edit This Confession</a>
 
 <form method="POST" action="/confessions/{{confession._id}}?_method=DELETE">
  
  
-  <button type="submit">Delete Confession</button>
+  <button id= "button-main" type="submit">Delete Confession</button>
 </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+body, html {
+background-image: url(https://fromagination.com/wp-content/uploads/2014/11/cropped-Light-Wood-Background.jpg);
+background-size: 100%;
+
+
+}
+
+#edit {
+padding:0;
+padding-left:0;
+padding-right:0;
+  display: flex;
+    justify-content: center;
+   align-content: center;
+
+}
+h3, p {
+font-family:  Helvetica, Arial, sans-serif;
+color: rgb(147, 0, 0);
+font-size: 35px;
+
+}
+
+h1, p , form,  #button-main{
+
+    display: flex;
+    justify-content: center;
+   align-content: center;
+}
+
+h1 {
+font-size: 65px;
+font-family: Helvetica;
+color: crimson
+}
+
+p {
+font-size: 35px;
+font-family: helvetica;
+color: crimson;
+text-decoration: underline;
+
+}
+
+#button-main, #edit {
+    font-family: Helvetica;
+    color: crimson;
+    background-color: rgb(128, 78, 37);
+    font-size: 35px;
+    
+    
+}
+
+</style>
+
