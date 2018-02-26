@@ -1,0 +1,12 @@
+<h1>Confession {{confession.name}}</h1>
+<h3>{{confession.submit}}</h3>
+
+<hr>
+
+<a href="/confessions/{{id}}/edit">Edit This Confession</a>
+
+<form method="POST" action="/confessions/{{confession._id}}?_method=DELETE">
+ 
+ 
+  <button type="submit">Delete Confession</button>
+</form>

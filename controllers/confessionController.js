@@ -1,5 +1,6 @@
-const express = require('express')
 
+const express = require('express')
+const methodOverride = require('method-override')
 // IMPORTANT: make sure to add merge params
 const router = express.Router({ mergeParams: true })
 
@@ -10,16 +11,12 @@ const Confession = require('../models/confession')
 /* GET home page. */
 router.get('/', (req, res) => {
 
-  // Find the company by route params defined in app.js
-  User.findById(req.params.userId).then((user) => {
-
-    
-    const confessions = user.confessions
-    res.render('confession/index', {
-      user: user,
+  Confession.find().then((confessions) => {
+    res.render('confessions/index', {
       confessions: confessions
     })
   })
+
 })
 
 // NEW
@@ -27,9 +24,7 @@ router.get('/', (req, res) => {
 router.get('/new', (req, res) => {
 
 
-  res.render('confessions/new', {
-    userId: req.params.userId
-  })
+  res.render('confessions/new')
 })
 
 // CREATE
@@ -37,38 +32,36 @@ router.get('/new', (req, res) => {
 router.post('/', (req, res) => {
 
 
-  User.findById(req.params.userId).then((user) => {
 
 
-    const newConfession = new Confession({
-      name: req.body.name,
-      price: req.body.price
-      
-    })
 
-    user.confessions.push(newConfession)
+  const newConfession = new Confession({
+    name: req.body.name,
+    submit: req.body.submit
 
-    return user.save()
-  }).then((updatedUser) => {
-
-    // Redirect to all sodas
-    res.redirect(`/users/${req.params.userId}/confessions`)
   })
-})
 
+
+  newConfession.save()
+    .then((savedConfession) => {
+
+      // Redirect to all sodas
+      res.redirect(`/confessions`)
+    })
+})
+//findconfessionbyID is te way james suggested to implement CRUD, specifically Edit and Delete.
+//router.delete etc, is not needed and is making the cde overyl complex
 
 // SHOW
 router.get('/:id', (req, res) => {
 
-  
-  User.findById(req.params.userId).then((user) => {
 
-    const confession = user.confessions.id(req.params.id)
+  Confession.findById(req.params.id).then((confession) => {
 
-  
-    res.render('confession/show', {
-      userId: req.params.userId,
-      confession: confession
+
+    res.render('confessions/show', {
+      confession: confession,
+      id: req.params.id
     })
   })
 })
@@ -77,12 +70,9 @@ router.get('/:id', (req, res) => {
 // GET
 router.get('/:id/edit', (req, res) => {
 
- 
-  User.findById(req.params.userId).then((user) => {
-    const confession = user.confessions.id(req.params.id)
-    res.render('confession/edit', {
-      userId: req.params.userId,
-      confession: confession
+  Confession.findById(req.params.id).then((confession) => {
+    res.render('confessions/edit', {
+      id: req.params.id
     })
   })
 })
@@ -92,13 +82,17 @@ router.get('/:id/edit', (req, res) => {
 router.patch('/:id', (req, res) => {
   User.findById(req.params.userId).then((user) => {
 
-    
-    const confession = user.confessions.id(req.params.id)
-    confession.name = req.body.name
-    confession.price = req.body.price
- 
 
+   // const confession = user.confessions.id(req.params.id)
+   // confession.name = req.body.name
+   // confession.submit = req.body.submit
+
+    Confession.findByIdAndUpdate(req.params.id).then(confession => {
+      res.redirect('/confessions')
+    })
     
+
+
     return user.save()
   }).then((updatedUser) => {
     res.redirect(`/users/${updatedUser._id}/confessions/${req.params.id}`)
@@ -108,12 +102,10 @@ router.patch('/:id', (req, res) => {
 // DESTROY
 // DELETE
 router.delete('/:id', (req, res) => {
-  User.findById(req.params.userId).then((user) => {
-    const confession = user.confessions.id(req.params.id)
-    confession.remove()
-    return user.save()
-  }).then(() => {
-    res.redirect(`/users/${req.params.userId}/confessions`)
+
+
+  Confession.findByIdAndRemove(req.params.id).then(() => {
+    res.redirect('/confessions')
   })
 })
 

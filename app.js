@@ -46,9 +46,9 @@ mongoose.connection.on('error', function() {
 });
 
 mongoose.connection.once('open', function() {
-    console.log("Successfully connected to the database. Drones are now on their way to assassinate trump and rape his daughter.");
+    console.log("Successfully connected to the database. ");
 })
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, 'public')))
@@ -61,11 +61,20 @@ const userController = require('./controllers/userController')
 
 app.use('/', index)
 app.use('/confessions', confessionController)
-app.use('/confession/:confessionId/user', userController)
+app.use('/confessions/:confessionId/user', userController)
 
-app.post('/confessions/new', (req, res, next)=>{
-  res.render("confessions/new")
-})
+// app.post('/confessions/new', (req, res, next)=>{
+//   res.render("confessions/new")
+// })
+
+// app.post('/confessions/edit', (req, res, next)=>{
+//   res.render("confessions/edit")
+// })
+
+// app.post('/confessions/edit/:id', (req, res) => {
+//   res.render('confessions/edit/:id')
+// })
+
 app.get('/confessions/new', (req, res, next)=>{
   res.render("confessions/new")
 })
@@ -75,12 +84,24 @@ app.post('/submission', (req, res) => {
   res.render('submission');
 });
 
-app.post('/confessions/index', (req, res) =>{
-  res.render('confessions/index');
-})
+// app.post('/confessions/delete/:id', (req, res) => {
+//   res.render('deleteConfession')
+// })
+
 app.get('/submission', (req, res) => {
   res.render('submission');
 })
+
+//app.get('/confessions/edit/:id, (req, res) => {
+//  Confession.findbyId(req.params.id, (err, confession) => {
+
+//  })
+
+
+// // app.post('/confessions/index', (req, res) =>{
+// //   res.render('confessions/index');
+// // })
+
 
 app.post('/submission', function(req, res){
   var submissionInfo = req.body; //Get the parsed information
@@ -102,7 +123,7 @@ app.post('/submission', function(req, res){
            res.render('show_message', {
               message: "New submission added", type: "success", submission: submissionInfo});
      });
-  }
+    }
 });
 
  
