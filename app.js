@@ -11,6 +11,7 @@ const app = express()
 
 
 mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect('mongodb://localhost/confessions');
 const db = mongoose.connection
 
 
@@ -73,6 +74,39 @@ app.post('/users/confessions', (req, res, next)=>{
 app.get('/users/:confessions', (req, res, next)=>{
   res.render("users/confessions")
 })
+
+app.get('/confessions/index', (req, res) => {
+  res.render("public/html/index.html")
+})
+
+app.get('/confessionSubmit', (req, res) => {
+  res.render('confessionSubmit');
+})
+
+app.post('/confessionSubmit', (rea, res) => {
+  var confessionSubmitInfo = req.body; //gets the parsed info
+
+  if(!confessionSubmitInfo.title || !confessionSubmitInfo.submissionfield){
+    res.render('show_message', {
+      message: "sorry, you provided the wrong info buddy", type: "error"
+    }); 
+  }else{
+var newConfessionSubmitInfo = new confessionSubmitInfo({
+      title: confessionSubmitInfo.title,
+      confess_here: confessionSubmitInfo.submissionfield 
+
+});
+
+newConfessionSubmit.save(err, confessionSubmit) =>{
+  if(err)
+  res.render('show_message', {message: "database error boi", type: "error"});
+  else
+  res.render('show_message', {
+    message: "New confession added", type: "success", confessionSubmit:confessionSubmitInfo
+  });
+}
+
+ }
 // catch 404 and forward to error handler
 //app.use(function(req, res, next) {
   //const err = new Error('Not Found')
