@@ -11,7 +11,7 @@ const app = express()
 
 
 mongoose.connect(process.env.MONGODB_URI)
-mongoose.connect('mongodb://localhost/confessions');
+
 const db = mongoose.connection
 
 
