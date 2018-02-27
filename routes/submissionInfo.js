@@ -1,16 +1,6 @@
 var express = require('express');
 var app = express();
-
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/confessions');
-
-var submissionSchema = mongoose.Schema({
-   name: Number,
-   Submit: Number
-   
-});
-
-var Submission = mongoose.model("Submission", submissionSchema);
+var Submission = require('../models/submission')
 
 app.get('/confessions/index', function(req, res){
    Submission.find(function(err, response){

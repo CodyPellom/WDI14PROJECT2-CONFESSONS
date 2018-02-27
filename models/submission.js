@@ -4,3 +4,6 @@ var submissionSchema = mongoose.Schema({
     
  });
  var Submission = mongoose.model("Submission", submissionSchema);
+
+
+ module.export = Submission

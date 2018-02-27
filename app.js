@@ -9,9 +9,8 @@ const methodOverride = require('method-override')
 const app = express()
 
 
-
+mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI)
-
 const db = mongoose.connection
 
 
@@ -31,23 +30,7 @@ app.set('view engine', 'hbs')
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 app.use(logger('dev'))
 app.use(bodyParser.json())
-const dbConfig = require('./config/database.config.js');
 
-
-mongoose.Promise = global.Promise;
-
-mongoose.connect(dbConfig.url, {
-   
-});
-
-mongoose.connection.on('error', function() {
-    console.log('Could not connect to the database. Exiting now...');
-    process.exit();
-});
-
-mongoose.connection.once('open', function() {
-    console.log("Successfully connected to the database. ");
-})
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
 app.use(methodOverride('_method'))
