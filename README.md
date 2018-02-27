@@ -7,4 +7,4 @@ https://imgur.com/a/OValj
 https://i.imgur.com/qzKtp2D.jpg
 
 * Heroku App Launch URL :
-https://pure-savannah-61723.herokuapp.com/
+https://wdi14project2-confessons.herokuapp.com/
